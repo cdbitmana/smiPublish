@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙명아이</title>
+    <link rel="stylesheet" href="@asset/css/common.css">
+    <link rel="stylesheet" href="@asset/css/main.css">
+    <link rel="stylesheet" href="@asset/css/modals.css">
+</head>
+<body>
+    <div id="wrap">
+        <main id="container">
+            <figure class="main-bg"><img src="@asset/img/dummy/main_bg.jpg" alt=""></figure>
+            <div class="login-box"> <!-- .show / .hide 추가시 화면 출력 여부 -->
+                <figure class="logo"><img src="@asset/img/dummy/logo.jpg" alt=""></figure>
+                <ul class="login-list">
+                    <li><a href="#" class="btn btn-round btn_modal" data-modal="profile">비회원 입장</a></li>
+                    <li><a href="#"><img src="@asset/img/dummy/kakao-login.jpg" alt="카카오톡으로 시작하기"></a></li>
+                    <li><a href="#"><img src="@asset/img/dummy/google-login.jpg" alt="구글로 시작하기"></a></li>
+                </ul>
+            </div>
+            <footer class="footer">
+                <button>숙명아이</button>
+                <button class="btn_modal" data-modal="privacy">개인정보처리방침</button>
+                <button class="btn_modal" data-modal="service">서비스이용약관</button>
+            </footer>
+        </main>
+    </div>
+
+
+    <script src="@asset/js/jquery-3.6.0.min.js"></script>
+    <script src="@asset/js/common.js"></script>
+    <script src="@asset/js/modal.js"></script>
+    <script src="@asset/js/input.js"></script>
+    <script>
+        // iframe  test용 임시
+        $(document).ready(function(){
+            const url = new URL(location.href);
+            const urlParams = url.searchParams;
+            const page = urlParams.get('page');
+            const width = urlParams.get('width');
+            const height = urlParams.get('height');
+            let _src = 'content-modal/'+page+'.html';
+            let iframe = $('<iframe class="iframe" frameborder="0" src="" />');
+
+            if(page == null) {
+                return false;
+            }else{
+                $('.login-box').addClass('hide');
+                $('body').append(iframe);
+            }
+
+            iframe.attr({
+                'src': _src,
+                'style': 'width: calc((var(--vh) * '+width+' * 1px)/1080);height: calc((var(--vh) * '+height+' * 1px)/1080);'
+            });
+
+        });
+    </script>
+</body>
+</html>
